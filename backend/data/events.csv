@@ -1,0 +1,13 @@
+timestamp,event_type,service,description
+2026-08-15 10:00:00,deployment,checkout-service,Checkout V2 deployed
+2026-08-15 10:15:00,latency_spike,checkout-service,API latency exceeded baseline
+2026-08-15 10:30:00,payment_failure_spike,checkout-service,Payment failures exceeded baseline
+2026-08-15 10:45:00,abandonment_spike,checkout-service,Checkout abandonment exceeded baseline
+2026-08-15 11:00:00,conversion_drop,checkout-service,Checkout conversion dropped below baseline
+2026-08-15 11:00:00,revenue_impact,checkout-service,Revenue dropped below expected level
+2026-08-16 09:55:00,payment_provider_outage,payment-service,Payment provider experiencing elevated transaction failures
+2026-08-16 10:15:00,latency_spike,checkout-service,API latency exceeded baseline
+2026-08-16 10:30:00,payment_failure_spike,checkout-service,Payment failures exceeded baseline
+2026-08-16 10:45:00,abandonment_spike,checkout-service,Checkout abandonment exceeded baseline
+2026-08-16 11:00:00,conversion_drop,checkout-service,Checkout conversion dropped below baseline
+2026-08-16 11:00:00,revenue_impact,checkout-service,Revenue dropped below expected level

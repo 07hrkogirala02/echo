@@ -1,0 +1,5 @@
+deployment_id,service,version,feature,environment,deployment_time
+DEP-4821,checkout-service,v2.4.1,Checkout V2,production,2026-08-15 10:00:00
+DEP-4817,search-service,v3.2.0,Search Optimization,production,2026-08-12 14:00:00
+DEP-4809,auth-service,v1.8.3,Authentication Update,production,2026-08-10 09:30:00
+DEP-4822,checkout-service,v2.4.2,Checkout Payment Optimization,production,2026-08-16 10:00:00

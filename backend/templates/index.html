@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Echo — Deployment Intelligence</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f7f8fa;
+            color: #17181a;
+        }
+
+        .app {
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            height: 72px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .brand-subtitle {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1280px;
+            margin: auto;
+            padding: 40px;
+        }
+
+        .page-title {
+            margin-bottom: 28px;
+        }
+
+        .page-title h1 {
+            font-size: 30px;
+            margin: 0 0 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-title p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        /* SEARCH */
+
+        .investigate-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .investigate-box input {
+            flex: 1;
+            height: 46px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 0 14px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .investigate-box input:focus {
+            border-color: #111827;
+        }
+
+        .investigate-box button {
+            height: 46px;
+            padding: 0 24px;
+            border: none;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .investigate-box button:hover {
+            background: #252a33;
+        }
+
+        /* DEPLOYMENT */
+
+        .deployment-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .deployment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .deployment-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .deployment-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .deployment-title h2 {
+            margin: 0 0 4px;
+            font-size: 20px;
+        }
+
+        .deployment-title p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .deployment-meta {
+            display: flex;
+            gap: 24px;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .deployment-meta strong {
+            color: #111827;
+            margin-left: 4px;
+        }
+
+        /* KPI */
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .kpi-description {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        /* SECTION */
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        /* IMPACT GRID */
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .impact-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .impact-card h3 {
+            margin: 0 0 16px;
+            font-size: 14px;
+        }
+
+        .impact-item {
+            padding: 14px 0;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .impact-item:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .impact-name {
+            font-size: 13px;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .impact-change {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .negative {
+            color: #dc2626;
+        }
+
+        .positive-bad {
+            color: #dc2626;
+        }
+
+        .impact-values {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        /* HYPOTHESIS */
+
+        .hypothesis {
+            background: #111827;
+            color: white;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .hypothesis-label {
+            font-size: 12px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .hypothesis h2 {
+            font-size: 22px;
+            margin: 0 0 14px;
+        }
+
+        .hypothesis-reason {
+            color: #d1d5db;
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .confidence-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .confidence {
+            background: #374151;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* TIMELINE */
+
+        .timeline-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .timeline {
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #111827;
+            margin: auto;
+        }
+
+        .timeline-line {
+            flex: 1;
+            height: 2px;
+            background: #d1d5db;
+        }
+
+        .timeline-time {
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 8px;
+        }
+
+        .timeline-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        /* EVENTS */
+
+        .events-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .event {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .event:last-child {
+            border-bottom: none;
+        }
+
+        .event-time {
+            width: 60px;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .event-content {
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .event-description {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        /* EMPTY / LOADING */
+
+        .message {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7280;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .impact-grid,
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .deployment-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="logo">E</div>
+
+            <div>
+                <div class="brand-name">Echo</div>
+                <div class="brand-subtitle">
+                    Deployment Intelligence
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Investigation Engine Online
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- TITLE -->
+
+        <div class="page-title">
+
+            <h1>Understand what your deployment caused.</h1>
+
+            <p>
+                Echo connects deployment events to system, product and business impact.
+            </p>
+
+        </div>
+
+
+        <!-- INVESTIGATE -->
+
+        <div class="investigate-box">
+
+            <input
+                id="deploymentInput"
+                value="DEP-4821"
+                placeholder="Enter deployment ID e.g. DEP-4821"
+            >
+
+            <button onclick="investigate()">
+                Investigate
+            </button>
+
+        </div>
+
+
+        <div id="loading" class="message hidden">
+            Investigating deployment...
+        </div>
+
+
+        <div id="error" class="message hidden"></div>
+
+
+        <div id="results" class="hidden">
+
+            <!-- DEPLOYMENT -->
+
+            <div class="deployment-card">
+
+                <div class="deployment-header">
+
+                    <div class="deployment-title">
+
+                        <div class="deployment-icon">
+                            🚀
+                        </div>
+
+                        <div>
+
+                            <h2 id="feature">
+                                Checkout V2
+                            </h2>
+
+                            <p id="deploymentId">
+                                DEP-4821
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="deployment-meta">
+
+                    <div>
+                        Service:
+                        <strong id="service"></strong>
+                    </div>
+
+                    <div>
+                        Version:
+                        <strong id="version"></strong>
+                    </div>
+
+                    <div>
+                        Environment:
+                        <strong id="environment"></strong>
+                    </div>
+
+                    <div>
+                        Deployed:
+                        <strong id="deploymentTime"></strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- KPI -->
+
+            <div class="kpi-grid">
+
+                <div class="kpi">
+
+                    <div class="kpi-label">
+                        EVIDENCE SCORE
+                    </div>
+
+                    <div class="kpi-value" id="evidenceScore">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Strength of causal evidence
+                    </div>
+
+                </div>
+
+
+                <div class="kpi">
+
+                    <div class="kpi-label">
+                        CONFIDENCE
+                    </div>
+
+                    <div class="kpi-value" id="confidence">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Echo's confidence in the hypothesis
+                    </div>
+
+                </div>
+
+
+                <div class="kpi">
+
+                    <div class="kpi-label">
+                        BUSINESS IMPACT
+                    </div>
+
+                    <div class="kpi-value negative" id="businessImpact">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Change in business metric
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMPACT -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    What changed?
+                </div>
+
+
+                <div class="impact-grid">
+
+
+                    <!-- SYSTEM -->
+
+                    <div class="impact-card">
+
+                        <h3>⚙️ System Impact</h3>
+
+                        <div id="systemImpact"></div>
+
+                    </div>
+
+
+                    <!-- PRODUCT -->
+
+                    <div class="impact-card">
+
+                        <h3>📦 Product Impact</h3>
+
+                        <div id="productImpact"></div>
+
+                    </div>
+
+
+                    <!-- BUSINESS -->
+
+                    <div class="impact-card">
+
+                        <h3>💰 Business Impact</h3>
+
+                        <div id="businessImpactDetails"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HYPOTHESIS -->
+
+            <div class="hypothesis">
+
+                <div class="hypothesis-label">
+                    Echo's causal hypothesis
+                </div>
+
+                <h2 id="hypothesisTitle">
+                    —
+                </h2>
+
+                <div class="hypothesis-reason" id="hypothesisReason">
+                    —
+                </div>
+
+                <div class="confidence-row">
+
+                    <span class="confidence" id="hypothesisConfidence">
+                        —
+                    </span>
+
+                    <span>
+                        Evidence score:
+                        <strong id="hypothesisScore">—</strong>
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- TIMELINE -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    ⏱ Causal Timeline
+                </div>
+
+                <div class="timeline-card">
+
+                    <div class="timeline" id="timeline"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPETING EVENTS -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    🔎 Competing Events
+                </div>
+
+                <div class="events-card" id="events"></div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+async function investigate() {
+
+    const deploymentId =
+        document
+        .getElementById("deploymentInput")
+        .value
+        .trim();
+
+    if (!deploymentId) {
+        return;
+    }
+
+    document
+        .getElementById("results")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("error")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("loading")
+        .classList
+        .remove("hidden");
+
+
+    try {
+
+        const investigationResponse =
+            await fetch(`/api/investigate/${deploymentId}`);
+
+        const investigation =
+            await investigationResponse.json();
+
+
+        if (investigation.status !== "SUCCESS") {
+
+            throw new Error(
+                investigation.message ||
+                "Deployment investigation failed."
+            );
+
+        }
+
+
+        const hypothesisResponse =
+            await fetch(`/api/hypothesis/${deploymentId}`);
+
+        const hypothesis =
+            await hypothesisResponse.json();
+
+
+        const eventsResponse =
+            await fetch(`/api/events/${deploymentId}`);
+
+        const events =
+            await eventsResponse.json();
+
+
+        renderInvestigation(
+            investigation,
+            hypothesis,
+            events
+        );
+
+
+        document
+            .getElementById("loading")
+            .classList
+            .add("hidden");
+
+        document
+            .getElementById("results")
+            .classList
+            .remove("hidden");
+
+    }
+
+    catch (error) {
+
+        document
+            .getElementById("loading")
+            .classList
+            .add("hidden");
+
+        document
+            .getElementById("error")
+            .classList
+            .remove("hidden");
+
+        document
+            .getElementById("error")
+            .textContent =
+                error.message;
+
+    }
+
+}
+
+
+function renderInvestigation(
+    investigation,
+    hypothesis,
+    events
+) {
+
+    const deployment =
+        investigation.deployment;
+
+
+    document.getElementById("feature")
+        .textContent =
+        deployment.feature;
+
+    document.getElementById("deploymentId")
+        .textContent =
+        deployment.deployment_id;
+
+    document.getElementById("service")
+        .textContent =
+        deployment.service;
+
+    document.getElementById("version")
+        .textContent =
+        deployment.version;
+
+    document.getElementById("environment")
+        .textContent =
+        deployment.environment;
+
+    document.getElementById("deploymentTime")
+        .textContent =
+        deployment.deployment_time;
+
+
+    renderSystemImpact(
+        investigation.system_impact
+    );
+
+    renderProductImpact(
+        investigation.product_impact
+    );
+
+    renderBusinessImpact(
+        investigation.business_impact
+    );
+
+
+    const evidence =
+        hypothesis.evidence;
+
+    document.getElementById("evidenceScore")
+        .textContent =
+        Number(evidence.score).toFixed(2);
+
+
+    document.getElementById("confidence")
+        .textContent =
+        evidence.confidence;
+
+
+    document.getElementById("hypothesisScore")
+        .textContent =
+        Number(evidence.score).toFixed(2);
+
+
+    const topHypothesis =
+        hypothesis.hypotheses &&
+        hypothesis.hypotheses.length
+            ? hypothesis.hypotheses[0]
+            : null;
+
+
+    if (topHypothesis) {
+
+        document.getElementById("hypothesisTitle")
+            .textContent =
+            topHypothesis.hypothesis;
+
+        document.getElementById("hypothesisReason")
+            .textContent =
+            topHypothesis.reason;
+
+        document.getElementById("hypothesisConfidence")
+            .textContent =
+            topHypothesis.confidence;
+
+    }
+
+
+    renderTimeline(
+        investigation,
+        events
+    );
+
+
+    renderEvents(events);
+
+}
+
+
+function renderSystemImpact(items) {
+
+    const container =
+        document.getElementById("systemImpact");
+
+    container.innerHTML = "";
+
+    items.forEach(item => {
+
+        container.innerHTML += impactItem(
+            item.metric,
+            item.percent_change,
+            item.before,
+            item.after
+        );
+
+    });
+
+}
+
+
+function renderProductImpact(items) {
+
+    const container =
+        document.getElementById("productImpact");
+
+    container.innerHTML = "";
+
+    items.forEach(item => {
+
+        container.innerHTML += impactItem(
+            item.metric,
+            item.percent_change,
+            item.before,
+            item.after
+        );
+
+    });
+
+}
+
+
+function renderBusinessImpact(items) {
+
+    const container =
+        document.getElementById("businessImpactDetails");
+
+    container.innerHTML = "";
+
+    if (!items.length) {
+        container.innerHTML =
+            "<div>No business impact detected.</div>";
+        return;
+    }
+
+    const item = items[0];
+
+    document.getElementById("businessImpact")
+        .textContent =
+        formatPercent(item.percent_change);
+
+
+    container.innerHTML =
+        impactItem(
+            item.metric,
+            item.percent_change,
+            item.before,
+            item.after
+        );
+
+}
+
+
+function impactItem(
+    metric,
+    change,
+    before,
+    after
+) {
+
+    const changeClass =
+        change < 0
+            ? "negative"
+            : "positive-bad";
+
+    return `
+
+        <div class="impact-item">
+
+            <div class="impact-name">
+                ${metric}
+            </div>
+
+            <div class="impact-change ${changeClass}">
+                ${formatPercent(change)}
+            </div>
+
+            <div class="impact-values">
+                Before: ${formatValue(before)}
+                &nbsp; → &nbsp;
+                After: ${formatValue(after)}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function formatPercent(value) {
+
+    const number =
+        Number(value);
+
+    if (number > 0) {
+        return "+" + number.toFixed(2) + "%";
+    }
+
+    return number.toFixed(2) + "%";
+
+}
+
+
+function formatValue(value) {
+
+    const number =
+        Number(value);
+
+    if (number >= 1000000) {
+
+        return (
+            "₹" +
+            (number / 1000000)
+                .toFixed(2) +
+            "M"
+        );
+
+    }
+
+    return number.toLocaleString();
+
+}
+
+
+function renderTimeline(
+    investigation,
+    events
+) {
+
+    const timeline =
+        document.getElementById("timeline");
+
+    timeline.innerHTML = "";
+
+
+    const deploymentTime =
+        investigation
+            .deployment
+            .deployment_time;
+
+
+    addTimelineItem(
+        timeline,
+        "🚀",
+        "Deployment",
+        "0 min"
+    );
+
+
+    if (
+        investigation.system_impact &&
+        investigation.system_impact.length
+    ) {
+
+        addTimelineItem(
+            timeline,
+            "⚙️",
+            "System impact",
+            "+15 min"
+        );
+
+    }
+
+
+    if (
+        investigation.product_impact &&
+        investigation.product_impact.length
+    ) {
+
+        addTimelineItem(
+            timeline,
+            "📦",
+            "Product impact",
+            "+45 min"
+        );
+
+    }
+
+
+    if (
+        investigation.business_impact &&
+        investigation.business_impact.length
+    ) {
+
+        addTimelineItem(
+            timeline,
+            "💰",
+            "Business impact",
+            "+60 min"
+        );
+
+    }
+
+}
+
+
+function addTimelineItem(
+    container,
+    icon,
+    label,
+    time
+) {
+
+    if (container.children.length > 0) {
+
+        const line =
+            document.createElement("div");
+
+        line.className =
+            "timeline-line";
+
+        container.appendChild(line);
+
+    }
+
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "timeline-item";
+
+    item.innerHTML = `
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-time">
+            ${time}
+        </div>
+
+        <div class="timeline-label">
+            ${icon} ${label}
+        </div>
+
+    `;
+
+    container.appendChild(item);
+
+}
+
+
+function renderEvents(events) {
+
+    const container =
+        document.getElementById("events");
+
+    container.innerHTML = "";
+
+
+    if (!events || !events.length) {
+
+        container.innerHTML = `
+
+            <div class="message">
+                No significant competing events detected.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    events.forEach(event => {
+
+        const date =
+            new Date(event.timestamp);
+
+        const time =
+            date.toLocaleTimeString(
+                [],
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+
+        container.innerHTML += `
+
+            <div class="event">
+
+                <div class="event-time">
+                    ${time}
+                </div>
+
+                <div class="event-content">
+
+                    <div class="event-title">
+                        ${event.event_type}
+                    </div>
+
+                    <div class="event-description">
+                        ${event.description}
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+window.onload = () => {
+
+    investigate();
+
+};
+
+</script>
+
+</body>
+</html>

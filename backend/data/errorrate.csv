@@ -1,0 +1,13 @@
+2026-08-15 09:00:00,checkout-service,error_rate,0.8,percent
+2026-08-15 09:15:00,checkout-service,error_rate,0.9,percent
+2026-08-15 09:30:00,checkout-service,error_rate,0.8,percent
+2026-08-15 09:45:00,checkout-service,error_rate,0.9,percent
+2026-08-15 10:00:00,checkout-service,error_rate,0.9,percent
+2026-08-15 10:15:00,checkout-service,error_rate,1.1,percent
+2026-08-15 10:30:00,checkout-service,error_rate,1.4,percent
+2026-08-15 10:45:00,checkout-service,error_rate,1.7,percent
+2026-08-15 11:00:00,checkout-service,error_rate,1.9,percent
+2026-08-15 11:15:00,checkout-service,error_rate,2.0,percent
+2026-08-15 11:30:00,checkout-service,error_rate,2.0,percent
+2026-08-15 11:45:00,checkout-service,error_rate,2.1,percent
+2026-08-15 12:00:00,checkout-service,error_rate,2.0,percent
