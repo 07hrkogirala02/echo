@@ -188,33 +188,47 @@ function BarChartIcon() {
   );
 }
 
-function CloudMark() {
+function TeardropMark() {
   return (
-    <span className="patcha-mark" aria-hidden="true">
-      <span className="patcha-yellow" />
-      <span className="patcha-red" />
-      <span className="patcha-green" />
-      <span className="patcha-blue" />
-    </span>
+    <svg
+      width="26"
+      height="32"
+      viewBox="0 0 24 30"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className="teardrop-logo"
+    >
+      <clipPath id="teardrop-clip">
+        <path d="M12 0C12 0 0 14 0 20C0 25.5228 5.37258 30 12 30C18.6274 30 24 25.5228 24 20C24 14 12 0 12 0Z" />
+      </clipPath>
+      <g clipPath="url(#teardrop-clip)">
+        <rect x="0" y="0" width="24" height="8" fill="#F5B700" />
+        <rect x="0" y="8" width="24" height="7" fill="#2BB673" />
+        <rect x="0" y="15" width="24" height="7" fill="#29ABE2" />
+        <rect x="0" y="22" width="24" height="8" fill="#2E3192" />
+      </g>
+    </svg>
   );
 }
 
-function HumanIllustration({ variant = "left" }) {
+function LeftHeroIllustration() {
   return (
-    <div className={`human-illustration human-${variant}`}>
-      <div className="human-hair" />
-      <div className="human-head">
-        <span className="human-eye eye-left" />
-        <span className="human-eye eye-right" />
-        <span className="human-mouth" />
-      </div>
+    <img
+      src="/Group 1.svg"
+      alt="Echo Hero Left Illustration"
+      className="hero-svg-art"
+    />
+  );
+}
 
-      <div className="human-body">
-        <div className="human-shirt" />
-      </div>
-
-      {variant === "left" && <div className="human-glasses" />}
-    </div>
+function RightHeroIllustration() {
+  return (
+    <img
+      src="/Group 2.svg"
+      alt="Echo Hero Right Illustration"
+      className="hero-svg-art"
+    />
   );
 }
 
@@ -227,20 +241,14 @@ function LandingPage({ onStart }) {
         </button>
 
         <div className="patcha-built">
-          <CloudMark />
+          <TeardropMark />
           <strong>Built for Patchamomma</strong>
         </div>
       </header>
 
       <section className="hero shell">
         <div className="hero-art hero-art-left">
-          <div className="hero-shape shape-left" />
-          <HumanIllustration variant="left" />
-
-          <span className="confetti c1" />
-          <span className="confetti c2" />
-          <span className="confetti c3" />
-          <span className="confetti c4" />
+          <LeftHeroIllustration />
         </div>
 
         <div className="hero-copy">
@@ -251,7 +259,7 @@ function LandingPage({ onStart }) {
             <br />
             Deployment
             <br />
-            Leaves an Echo<span>..!</span>
+            Leaves an Echo<span>.!</span>
           </h1>
 
           <p className="hero-subtitle">
@@ -267,13 +275,7 @@ function LandingPage({ onStart }) {
         </div>
 
         <div className="hero-art hero-art-right">
-          <div className="hero-shape shape-right" />
-          <HumanIllustration variant="right" />
-
-          <span className="confetti c5" />
-          <span className="confetti c6" />
-          <span className="confetti c7" />
-          <span className="confetti c8" />
+          <RightHeroIllustration />
         </div>
       </section>
 
@@ -410,26 +412,88 @@ function LandingPage({ onStart }) {
       </section>
 
       <section className="echo-cta">
-        <div className="cta-content shell">
-          <div className="cta-frame">
-            <p>
-              Have an <span>Echo</span>
-            </p>
+        <div className="cta-container shell">
+          <div className="cta-card-frame">
+            <span className="cta-corner-handle top-left" aria-hidden="true" />
+            <span className="cta-corner-handle top-right" aria-hidden="true" />
+            <span className="cta-corner-handle bottom-left" aria-hidden="true" />
+            <span className="cta-corner-handle bottom-right" aria-hidden="true" />
+
+            <div className="cta-header-row">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="cta-burst-left"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 8L8 11M12 3V8M20 8L16 11"
+                  stroke="#FFFFFF"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+
+              <span className="cta-have-an">Have an</span>
+
+              <div className="cta-echo-badge">
+                <span>Echo</span>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="#000000"
+                  stroke="#FFFFFF"
+                  strokeWidth="1.5"
+                  className="cta-cursor-icon"
+                  aria-hidden="true"
+                >
+                  <path d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" />
+                </svg>
+              </div>
+
+              <span className="cta-cross-right" aria-hidden="true">
+                +
+              </span>
+            </div>
+
             <h2>Know Your Release Impact.</h2>
 
-            <small>
-              Instant causal intelligence across Engineering, Product &amp;
-              Business. Cut through the noise and get immediate answers.
-            </small>
+            <p className="cta-subtitle">
+              Instant Causal Intelligence Across Engineering, Product, &amp; Business.
+              <br />
+              Cut through the noise of fragmented dashboards and get immediate,
+              <br />
+              AI-powered answers about what your release actually cause
+            </p>
 
-            <button type="button" onClick={onStart}>
-              Start Causal Investigation
-            </button>
+            <div className="cta-action-row">
+              <span className="cta-dot-solid" aria-hidden="true" />
+
+              <button
+                className="cta-btn-white"
+                type="button"
+                onClick={onStart}
+              >
+                Start Causal Investigation
+              </button>
+
+              <div className="cta-email-wrapper">
+                <span className="cta-email-text">harikaogirala8@gmail.com</span>
+                <span className="cta-dot-hollow" aria-hidden="true" />
+              </div>
+            </div>
           </div>
 
-          <div className="cta-hand">
-            <span className="hand-palm" />
-            <span className="hand-thumb" />
+          <div className="cta-hand-wrapper">
+            <img
+              src="/Container.svg"
+              alt="Hand holding CTA card"
+              className="cta-hand-img"
+            />
           </div>
         </div>
       </section>
