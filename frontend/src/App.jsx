@@ -557,7 +557,7 @@ function ProductHeader({ onHome }) {
       </button>
 
       <div className="patcha-built compact">
-        <CloudMark />
+        <TeardropMark />
         <strong>Built for Patchamomma</strong>
       </div>
     </header>
@@ -1161,6 +1161,7 @@ function App() {
 
     if (!cleanId) return;
 
+    window.scrollTo(0, 0);
     setDeploymentId(cleanId);
     setInvestigationData(null);
     setResultError("");
@@ -1168,6 +1169,7 @@ function App() {
   };
 
   const loadInvestigation = async () => {
+    window.scrollTo(0, 0);
     setLoadingResult(true);
     setResultError("");
     setScreen("results");
@@ -1234,7 +1236,10 @@ function App() {
     return (
       <InvestigationProgress
         deploymentId={deploymentId}
-        onBack={() => setScreen("select")}
+        onBack={() => {
+          window.scrollTo(0, 0);
+          setScreen("select");
+        }}
         onComplete={loadInvestigation}
       />
     );
@@ -1246,7 +1251,10 @@ function App() {
       data={investigationData}
       loading={loadingResult}
       error={resultError}
-      onBack={() => setScreen("select")}
+      onBack={() => {
+        window.scrollTo(0, 0);
+        setScreen("select");
+      }}
       onRestart={() => {
         setDeploymentId("");
         setInvestigationData(null);
