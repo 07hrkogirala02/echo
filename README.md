@@ -4,7 +4,7 @@
 
 **Echo is a Release Impact Intelligence platform that investigates what a software deployment actually changed across system, product, and business signals.**
 
-[🚀 Live Demo](https://echo-frontend-1025625447297.us-central1.run.app) 
+[🚀 Live Demo](https://echo-frontend-1025625447297.us-central1.run.app) . [🚀 Medium Post](https://medium.com/@Harika_Ogirala/echo-every-deployment-leaves-an-echo-d04f7615a5cc) 
 
 ---
 
